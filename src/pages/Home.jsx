@@ -32,7 +32,7 @@ const Home = ({setLoader}) => {
             </div>
           </div>
         </div>
-        <div className="aboutDiv">
+        <div className="aboutDiv" id="about">
           <h1>About Us</h1>
           <div className="about">
             <div className="about-element">
@@ -64,7 +64,7 @@ const Home = ({setLoader}) => {
             </div>
           </div>
         </div>
-        <div className="faqDiv">
+        <div className="faqDiv" id="faq">
           <h1>Frequently Asked Questions</h1>
           <div className="faq">
             <div className="faq-element">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Login = ({setLoader}) => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Login = ({setLoader}) => {
     <>
       <div className="login-div">
         <div className="login">
+        <img src={logo} alt="" />
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-container">

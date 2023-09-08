@@ -24,10 +24,10 @@ const Navbar = ({ page, setLoader }) => {
             <a href="#">Blogs</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="#about">About</a>
           </li>
           <li>
-            <a href="#">FAQ</a>
+            <a href="#faq">FAQ</a>
           </li>
           
         </ul>

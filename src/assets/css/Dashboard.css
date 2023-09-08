@@ -1,0 +1,133 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  gap: 5%;
+  position: relative;
+}
+.sidebar {
+  flex-basis: 18%;
+  border-right: 1px solid rgb(19, 19, 19);
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px #000000;
+  padding: 10px;
+  position: relative;
+}
+.dashboard-main {
+  flex-basis: 75%;
+}
+.sidebar .profile {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+.profile .avatar {
+  margin: 10px;
+  margin-top: 20px;
+}
+.profile .avatar img {
+  /* background-color: #3698d5; */
+  /* padding: 20px; */
+  font-size: 45px;
+  width: 150px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  color: rgb(229, 229, 229);
+  display: inline-flex;
+  border-radius: 100%;
+}
+.profile .name {
+  font-size: 25px;
+}
+.sidebarMenu {
+  margin: 40px 10px;
+}
+.sidebarMenu p {
+  margin: 10px;
+  border: 1px solid rgb(19, 19, 19);
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 17px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.sidebarMenu p:hover,
+.sidebarMenu p.active {
+  background-color: #3698d5;
+  color: rgb(229, 229, 229);
+  text-shadow: 1px 1px 1px #000000;
+  border-color: #3698d5;
+}
+.logout {
+  bottom: 10px;
+  position: absolute;
+  width: 90%;
+}
+.logout button {
+  color: rgb(229, 229, 229);
+  background-color: #3698d5;
+  border: none;
+  width: 90%;
+  padding: 10px 20px;
+  margin: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: 0.3s ease-in-out;
+  text-shadow: 1px 1px 1px #000000;
+}
+.logout button:hover {
+  transform: translateY(-3px);
+  text-decoration: underline;
+}
+.dashboard-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.dashboard-main .welcome {
+  margin: 20px;
+  margin-bottom: 40px;
+}
+.welcome img {
+  width: 200px;
+  height: auto;
+}
+.welcome h1 {
+  font-size: 35px;
+}
+.suggestionBox {
+  border: 1px solid rgb(19, 19, 19);
+  border-radius: 20px;
+  width: 90%;
+  box-shadow: 2px 2px 5px #000000;
+  position: relative;
+}
+.suggestionBox h2 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.suggestions {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 95%;
+  gap: 5.1%;
+  padding: 20px;
+}
+.suggestions p {
+  background-color: rgb(247, 247, 247);
+  border-radius: 20px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  text-shadow: 0px 0px 1px #000000;
+  border: 1px solid rgb(19, 19, 19);
+}
+.suggestions p:hover {
+  background-color: #3698d5;
+  color: rgb(229, 229, 229);
+  border-color: #3698d5;
+}

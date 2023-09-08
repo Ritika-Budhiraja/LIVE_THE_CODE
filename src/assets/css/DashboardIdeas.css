@@ -1,0 +1,131 @@
+.ideas {
+  flex-basis: 75%;
+  text-align: left;
+  padding: 20px 0px;
+  position: relative;
+  width: 80%;
+  max-height: 100vh;
+}
+.addIcon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #3698d5;
+  color: rgb(229, 229, 229);
+  border-radius: 100%;
+  font-size: 25px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  animation: addIconAnimation 1.5s ease-in-out infinite alternate;
+  text-shadow: 1px 1px 1px #000000;
+  transition: 0.5s;
+}
+.addIcon:hover {
+  background-color: rgb(229, 229, 229);
+  color: #3698d5;
+  border: 1px solid #3698d5;
+}
+@keyframes addIconAnimation {
+  0% {
+    transform: translateY(-10px);
+  }
+}
+.ideas h2 {
+  font-size: 30px;
+}
+.ideasDiv {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  width: 95%;
+  overflow-y: scroll;
+  max-height: 80%;
+  padding: 20px;
+  justify-items: center;
+}
+.idea {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid rgb(19, 19, 19);
+  box-shadow: 1px 1px 1px #000000;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 90%;
+}
+.idea > p:nth-child(1) {
+  font-size: 18px;
+  font-weight: 500;
+}
+.idea:hover {
+  background-color: #3698d5;
+  color: rgb(229, 229, 229);
+  scale: 1.05;
+  border-color: #3698d5;
+}
+/* .idea .viewDiv img, 
+.idea:hover .likeDiv img {
+  color: rgb(229, 229, 229);
+} */
+
+.viewDiv,
+.likeDiv {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+.ideaFormDiv {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(19, 19, 19, 0.3);
+}
+.ideaForm {
+  padding: 0;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgb(229, 229, 229);
+  position: relative;
+}
+.backBtn {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  display: inline-flex;
+  cursor: pointer;
+}
+.ideaForm h2 {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.input-label-image {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  margin-left: 10px;
+  font-size: 16px;
+  gap: 10px;
+}
+.input-label-image svg {
+  width: 25px;
+  height: auto;
+}
+.ideaForm button {
+  background-color: #3698d5;
+  text-shadow:  1px 1px 1px #000000;
+  margin-top: 0px;
+}

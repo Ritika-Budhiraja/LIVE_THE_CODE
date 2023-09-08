@@ -1,0 +1,56 @@
+.profileDiv {
+  flex-basis: 75%;
+  text-align: left;
+  padding: 20px 0px;
+  position: relative;
+  width: 80%;
+  max-height: 100vh;
+}
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-height: 85%;
+}
+.leftProfileContainer {
+  flex: 1;
+}
+.leftProfileContainer img {
+    border-radius: 100%;
+}
+.rightProfileContainer {
+  flex: 2;
+}
+.rightProfileContainer .profileInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+.rightProfileContainer .profileInfo h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    line-height: 0.8;
+}
+.rightProfileContainer .profileInfo p {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 10px 0;
+    padding: 5px 0;
+}
+.rightProfileContainer span {
+    font-weight: 400;
+}
+.profileIdeasDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileIdeasDiv .idea {
+    width: 90%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
