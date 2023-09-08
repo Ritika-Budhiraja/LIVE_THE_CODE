@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
-  const handleSubmit = (e) => {};
+const Signup = ({ setLoader }) => {
+  const handleSubmit = (e) => {
+    setLoader(true);
+  };
+  setLoader(false);
 
   return (
     <>
@@ -51,7 +54,7 @@ const Signup = () => {
 
           <div className="already">
             <p>
-              Don't have an account? <Link to="/login">Login</Link>
+              Don't have an account? <Link onClick={()=>setLoader(true)} to="/login">Login</Link>
             </p>
           </div>
 

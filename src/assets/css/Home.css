@@ -1,0 +1,122 @@
+.home .headerDiv {
+    position: relative;
+    height: 92.3vh;
+    overflow: hidden;
+  }
+  .home .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 80px auto;
+    width: 80%;
+  }
+  .home .leftheader {
+    flex: 1;
+  }
+  .home .leftheader h1 {
+    font-size: 70px;
+    color: rgb(19, 19, 19);
+    text-align: left;
+    line-height: 0.95;
+    text-shadow: 1px 1px 1px black;
+  }
+  .home .leftheader span {
+    color: #3698d5;
+    text-align: left;
+    font-size: 78px;
+    text-shadow: 1px 1px 1px black;
+  }
+  .home .leftheader p {
+    color: rgb(243, 166, 24);
+    font-family: "Dancing Script", cursive;
+    font-weight: 700;
+    margin: 0;
+    transform: translateY(-15px);
+    font-size: 60px;
+    text-shadow: 1px 1px 1px black;
+  }
+  .home .rightheader {
+    flex: 1.3;
+  }
+  .home .rightheader img {
+    width: 100%;
+    height: auto;
+  }
+  .home .leftheader {
+    text-align: left;
+  }
+  .home .leftheader a {
+    text-decoration: none;
+    font-size: 28px;
+    background-color: #3698d5;
+    box-shadow: 4px 4px 7px #000000;
+    padding: 5px 30px;
+    border-radius: 20px;
+    font-weight: 400;
+    color: rgb(229, 229, 229);
+    text-shadow: 1px 1px 1px black;
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+  }
+  .home .leftheader a:hover {
+    scale: 1.03;
+    transform: translateY(-2px);
+  }
+  
+  .faqDiv {
+    background-color: rgb(19, 19, 19);
+    margin: 3% 5%;
+    padding: 20px;
+    border-radius: 20px;
+    color: rgb(229, 229, 229);
+  }
+  .faq {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    gap: 5%;
+  }
+  .faq-element {
+    padding: 10px;
+    padding-left: 0;
+  }
+  .faq-element h2 {
+    margin-bottom: 0;
+    line-height: 0.5;
+  }
+  .faq-element:nth-child(1),
+  .faq-element:nth-child(2) {
+    border-right: 1px solid rgb(229, 229, 229);
+    padding-right: 50px;
+  }
+  .aboutDiv {
+    margin: 3% 5%;
+    padding: 20px;
+  }
+  .about {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    width: 90%;
+    margin: auto;
+  }
+  .about-element {
+    border: 1px solid rgb(19, 19, 19);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 3px 2px 7px #000000;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+  .about-element:hover {
+    scale: 1.05;
+  }
+  .about-element img {
+    width: 150px;
+    height: auto;
+  }

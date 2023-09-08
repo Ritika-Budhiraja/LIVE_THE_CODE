@@ -1,0 +1,92 @@
+.navbar {
+    padding: 0 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    width: 90%;
+    /* background-color: rgb(229, 229, 229); */
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 0.7px #000000;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    font-family: "Righteous", cursive;
+    font-size: 30px;
+  }
+  .logo img {
+    width: 50px;
+    height: auto;
+    margin-right: 5px;
+  }
+  .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu ul li {
+    margin: 0 25px;
+    transition: 0.3s;
+  }
+  .menu ul li a {
+    text-decoration: none;
+    color: rgb(19, 19, 19);
+  }
+  .menu ul li:hover {
+    scale: 1.05;
+  }
+  .menu ul li::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #3698d5;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+  .menu ul li:hover::after {
+    width: 100%;
+  }
+  .menu ul .active {
+    scale: 1.05;
+  }
+  .menu ul .active::after {
+    width: 100%;
+  }
+  .navbar .signin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar .signin a {
+    text-decoration: none;
+    background-color: #3698d5;
+    color: rgb(229, 229, 229);
+    padding: 6px 20px;
+    border-radius: 15px;
+    margin-left: 10px;
+    transition: 0.3s ease-in-out;
+    white-space: nowrap;
+    font-size: 18px;
+    box-shadow: 1px 1px 4px #000000;
+  }
+  .navbar .signin a:hover {
+    scale: 1.1;
+  }

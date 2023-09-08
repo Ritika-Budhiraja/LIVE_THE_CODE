@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setLoader}) => {
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
 
@@ -9,7 +9,12 @@ const Login = () => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
+
+    setLoader(true);
+    navigate("/dashboard");
   };
+
+  setLoader(false);
 
   return (
     <>
@@ -48,7 +53,7 @@ const Login = () => {
           )}
           <div className="already">
             <p>
-              Don't have an account? <Link to="/signup">Register</Link>
+              Don't have an account? <Link onClick={()=>setLoader(true)} to="/signup">Register</Link>
             </p>
           </div>
         </div>
