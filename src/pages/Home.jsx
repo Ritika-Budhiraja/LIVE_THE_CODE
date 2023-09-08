@@ -6,10 +6,10 @@ import setting from "../assets/images/setting.svg";
 import arrow from "../assets/images/arrow.svg";
 import about1 from "../assets/images/about1.svg";
 
-const Home = () => {
+const Home = ({setLoader}) => {
   return (
     <>
-      <Navbar page={"home"} />
+      <Navbar page={"home"} setLoader={setLoader} />
       <div className="home">
         <div className="headerDiv">
           <div className="header">
@@ -19,7 +19,7 @@ const Home = () => {
                 <br />
                 <span>Business</span> <p>With Us...</p>
               </h1>
-              <Link to="/login">Boost Your Idea!</Link>
+              <Link onClick={()=>setLoader(true)} to="/login">Boost Your Idea!</Link>
             </div>
             <div className="rightheader">
               <img src={home} alt="" />
@@ -94,9 +94,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-        <div className="colorSVG">
-        </div>
-        <div className="colorSVG2"></div>
+      <div className="colorSVG"></div>
+      <div className="colorSVG2"></div>
     </>
   );
 };

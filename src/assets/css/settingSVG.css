@@ -1,0 +1,46 @@
+.settingSVG {
+  position: absolute;
+  left: -60px;
+  bottom: -70px;
+  z-index: -1;
+}
+.settingSVG img {
+  width: 300px;
+  height: auto;
+}
+.arrowSVG {
+  position: absolute;
+  right: -100px;
+  bottom: -80px;
+  z-index: -1;
+}
+.arrowSVG img {
+  width: 300px;
+  height: auto;
+}
+.colorSVG {
+  filter: blur(200px);
+  position: fixed;
+  background-image: linear-gradient(to bottom right, #9333ea, #c084fc);
+  width: 300px;
+  height: 300px;
+  left: -60px;
+  bottom: -70px;
+  z-index: -10;
+}
+.home {
+  position: relative;
+}
+.colorSVG2 {
+  background-image: linear-gradient(to bottom right, #7dd3fc, #22d3ee);
+  right: 0px;
+  bottom: -70px;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  filter: blur(200px);
+}
+.colorSVG2-login {
+  bottom: 16px;
+  z-index: -10;
+}
