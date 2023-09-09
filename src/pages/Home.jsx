@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import setting from "../assets/images/setting.svg";
 import arrow from "../assets/images/arrow.svg";
 import about1 from "../assets/images/about1.svg";
-import Ideas from "../components/Ideas";
+import about2 from "../assets/images/about2.svg";
+import about3 from "../assets/images/about3.svg";
 import IdeasHome from "../components/IdeasHome";
 import BlogsHome from "../components/BlogsHome";
+import Footer from "../components/Footer";
 
 const Home = ({ setLoader }) => {
   const [homeTab, setHomeTab] = useState("home");
@@ -52,7 +54,7 @@ const Home = ({ setLoader }) => {
               </div>
               <div className="about-element">
                 <h2>About</h2>
-                <img src={about1} alt="" />
+                <img src={about2} alt="" />
                 <p>
                 Define a clear and compelling UVP (Unique Value Proposition ) that sets your startup apart from competitors..
 
@@ -60,7 +62,7 @@ const Home = ({ setLoader }) => {
               </div>
               <div className="about-element">
                 <h2>About</h2>
-                <img src={about1} alt="" />
+                <img src={about3} alt="" />
                 <p>
                 Assemble a talented and diverse team with the skills necessary to execute your vision.. Define roles and responsibilities clearly to ensure efficient operations.
                 </p>
@@ -100,6 +102,8 @@ const Home = ({ setLoader }) => {
       )}
       {homeTab === "ideas" && <IdeasHome />}
       {homeTab === "blogs" && <BlogsHome />}
+
+      <Footer />
       <div className="colorSVG"></div>
       <div className="colorSVG2"></div>
     </>
