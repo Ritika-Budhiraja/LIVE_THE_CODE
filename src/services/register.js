@@ -1,6 +1,7 @@
-import auth from '../config/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {addUserData} from './firestore';
+import app from '../config/firebase'
+import { getAuth } from 'firebase/auth';
 
 function register(data, callback) {   // data = {name,email, password.....} & callback = (error, data)
 
