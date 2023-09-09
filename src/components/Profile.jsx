@@ -1,9 +1,57 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import avatar from "../assets/images/avatar.png";
 import like from "../assets/images/like.svg";
 import view from "../assets/images/view.svg";
+import { getBlogsByUid } from "../services/blogs";
+import { AuthContext } from "../context/AuthContext";
+import { getideasByUid } from "../services/ideas";
 
 const Profile = ({ userData }) => {
+  const [blogData, setBlogData] = useState([]);
+  const [ideasData, setIdeasData] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        getBlogsByUid(currentUser.uid, (error, data) => {
+          if (error) {
+            console.error("Blog Fetching Error:\n", error);
+          } else {
+            setBlogData(data); // Set the blog data in state
+            console.log("Blog Data:\n", data);
+          }
+        });
+      } catch (error) {
+        console.error("Error calling getBlogsByUid:", error);
+      }
+    };
+
+    if (currentUser && currentUser.uid) {
+      fetchData();
+    }
+  }, [currentUser]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        getideasByUid(currentUser.uid, (error, data) => {
+          if (error) {
+            console.error("Ideas Fetching Error:\n", error);
+          } else {
+            setIdeasData(data); // Set the ideas data in state
+            console.log("Ideas Data:\n", data);
+          }
+        });
+      } catch (error) {
+        console.error("Error calling getideasByUid:", error);
+      }
+    };
+
+    if (currentUser && currentUser.uid) {
+      fetchData();
+    }
+  }, [currentUser]);
+
   return (
     <div className="profileDiv">
       <h1>Your Profile</h1>
@@ -35,36 +83,30 @@ const Profile = ({ userData }) => {
             </p>
             <h3>Featured Ideas:</h3>
             <div className="profileIdeasDiv">
-              {Array.from({ length: 3 }, (_, index) => (
+              {ideasData.map((idea, index) => (
                 <div className="idea" key={index}>
-                  <p>Heading</p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Odio, officia?
-                  </p>
+                  <p>{idea.title}</p>
+                  <p>{idea.body}</p>
                   <span className="viewDiv">
-                    10 <img src={view} alt="" />
+                    {idea.views} <img src={view} alt="View" />
                   </span>
                   <span className="likeDiv">
-                    10 <img src={like} alt="" />
+                    {idea.likes} <img src={like} alt="Like" />
                   </span>
                 </div>
               ))}
             </div>
             <h3>Featured Blogs:</h3>
             <div className="profileIdeasDiv profileBlogsDiv">
-              {Array.from({ length: 3 }, (_, index) => (
-                <div className="idea blog" key={index}>
-                  <p>Heading</p>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Odio, officia?
-                  </p>
+              {blogData.map((data, index) => (
+                <div className="idea" key={index}>
+                  <p>{data.title}</p>
+                  <p>{data.body}</p>
                   <span className="viewDiv">
-                    10 <img src={view} alt="" />
+                    {data.views} <img src={view} alt="View" />
                   </span>
                   <span className="likeDiv">
-                    10 <img src={like} alt="" />
+                    {data.likes} <img src={like} alt="Like" />
                   </span>
                 </div>
               ))}
