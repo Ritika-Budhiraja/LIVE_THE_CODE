@@ -41,7 +41,7 @@ const Dashboard = ({ setLoader }) => {
       }
     }
 
-    if (currentUser) {
+    if (currentUser && currentUser.uid) {
       getUserData(currentUser.uid); // Call the function with the UID when currentUser is available
     }
   }, [currentUser]); // Include currentUser as a dependency
@@ -124,7 +124,7 @@ const Dashboard = ({ setLoader }) => {
         </div>
 
         {tab === "home" && <DashboardMain tab={setTab} />}
-        {tab === "ideas" && <Ideas />}
+        {tab === "ideas" && <Ideas  />}
         {tab === "blog" && <Blogs />}
         {tab === "profile" && <Profile userData={userData} />}
       </div>

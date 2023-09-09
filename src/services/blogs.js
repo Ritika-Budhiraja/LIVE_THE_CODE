@@ -1,11 +1,9 @@
-import { collection, collection, doc, doc, getDocs, getFirestore, increment, query, setDoc, where } from 'firebase/firestore'
-import app from '../config/firebase'
-
-const db = getFirestore(app)
+import { collection, doc, getDocs, increment, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { db } from "../config/firebase";
 
 const getAllBlogs = async (callback) => {
-    const collection = collection(db, "blogs");
-    await getDocs(collection)
+    const collectionDb = collection(db, "blogs");
+    await getDocs(collectionDb)
         .then((docs) => {
             callback(null, docs);
         })
@@ -20,14 +18,27 @@ const getAllBlogs = async (callback) => {
 // can access each doc -> docs.forEach((doc) => {  rest of the code })
 
 const getBlogsByUid = async (uid, callback) => {
-    const collection = collection(db, "blogs");
-    const query = query(collection, where("uid" == uid));
-    await getDocs(query).then((docs) => {
-        callback(null, docs)   
-    }).catch((error) => {
+    const collectionDb = collection(db, "blogs");
+    const queryDb = query(collectionDb, where("uid", "==", uid));
+    // await getDocs(query).then((docs) => {
+    //     callback(null, docs)   
+    // }).catch((error) => {
+    //     console.error(error);
+    //     callback(error, null);
+    // });
+    try {
+        const querySnapshot = await getDocs(queryDb);
+        console.log(querySnapshot);
+        const docs = [];
+        console.log(uid);
+        querySnapshot.forEach((doc) => {
+            docs.push(doc.data());
+        });
+        callback(null, docs);
+    } catch (error) {
         console.error(error);
-        callback(error, null);
-    });
+        callback(error.message, null);
+    }
 }
 
 /*
@@ -54,18 +65,18 @@ const addBlog = async (data, callback) => {
     }
 }
 
-const updateBlogLike = async(blogId, callback) => {
+const updateBlogLike = async (blogId) => {
     const docRef = doc(db, "blogs", blogId);
-    await setDoc(docRef, {
-        likes : increment(1)
+    await updateDoc(docRef, {
+      likes: increment(1)
     });
-}
-
-const uppdateBlogViews = async(blogId, callback) => {
+  };
+  
+  const updateBlogViews = async (blogId) => {
     const docRef = doc(db, "blogs", blogId);
-    await setDoc(docRef, {
-        views : increment(1)
+    await updateDoc(docRef, {
+      views: increment(1)
     });
-}
+  };
 
-export default {getAllBlogs, getBlogsByUid, addBlog, updateBlogLike, uppdateBlogViews};
+export { getAllBlogs, getBlogsByUid, addBlog, updateBlogLike, updateBlogViews };

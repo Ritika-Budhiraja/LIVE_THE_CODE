@@ -1,56 +1,77 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import view from "../assets/images/view.svg";
 import like from "../assets/images/like.svg";
 import BlogForm from "./BlogForm";
+import { AuthContext } from "../context/AuthContext";
+import {
+  getAllBlogs,
+  updateBlogLike,
+  updateBlogViews,
+} from "../services/blogs";
 
 const Blogs = () => {
   const [blogForm, setBlogForm] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
+  const [blogData, setBlogData] = useState([]); // [ { blog1 }, { blog2 }, { blog3 }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        getAllBlogs((error, data) => {
+          if (error) {
+            console.error("Error fetching blogs:", error);
+          } else {
+            setBlogData(data); // Set the blog data in state
+            console.log("Blog Data:", data);
+          }
+        });
+      } catch (error) {
+        console.error("Error calling getAllBlogs:", error);
+      }
+    };
+
+    if (currentUser && currentUser.uid) {
+      fetchData(); // Fetch blog data when currentUser is available
+    }
+  }, [currentUser]); // Run this effect whenever currentUser changes
+
+  // ... (rest of your component code)
+
   return (
     <>
       <div className="blogs ideas">
         <h2>Review Some of the Best Blogs</h2>
         <div className="ideasDiv blogsDiv">
-          {Array.from({ length: 12 }, (_, index) => (
-            <div className="idea blog" key={index}>
-              <h3>Heading</h3>
-              <h4>(By: Aman)</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Reiciendis adipisci officia ex blanditiis impedit ad, autem cum
-                cupiditate quaerat tenetur praesentium necessitatibus magnam
-                numquam nesciunt vero similique soluta perferendis officiis rem
-                totam temporibus. Libero fuga nostrum cum dicta in eum. Fugiat
-                veniam mollitia nostrum numquam recusandae unde similique error
-                laudantium.
-                <br />
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
-                excepturi veniam similique vel. Sed tempore facilis ut
-                praesentium fugiat necessitatibus quasi unde hic. Possimus
-                voluptatibus, qui error, earum in quia fuga non ex a ab, quos
-                pariatur maiores excepturi est quibusdam eaque eum. Facere,
-                enim. Totam assumenda rerum non vel. Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Reiciendis adipisci officia ex
-                blanditiis impedit ad, autem cum cupiditate quaerat tenetur
-                praesentium necessitatibus magnam numquam nesciunt vero
-                similique soluta perferendis officiis rem totam temporibus.
-                Libero fuga nostrum cum dicta in eum. Fugiat veniam mollitia
-                nostrum numquam recusandae unde similique error laudantium.
-                <br />
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
-                excepturi veniam similique vel. Sed tempore facilis ut
-                praesentium fugiat necessitatibus quasi unde hic. Possimus
-                voluptatibus, qui error, earum in quia fuga non ex a ab, quos
-                pariatur maiores excepturi est quibusdam eaque eum. Facere,
-                enim. Totam assumenda rerum non vel.
-              </p>
-              <span className="viewDiv">
-                10 <img src={view} alt="" />
-              </span>
-              <span className="likeDiv">
-                10 <img src={like} alt="" />
-              </span>
-            </div>
-          ))}
+          {blogData.docs &&
+            blogData.docs.map((doc, index) => {
+              const data = doc.data(); // Extract the data from the document
+              const docId = doc.id; // Get the document ID
+
+              return (
+                <div className="idea blog" key={docId}>
+                  <h3>{data.title}</h3>
+                  <h4>(By: {data.user_name})</h4>
+                  <p>{data.body}</p>
+                  <span className="viewDiv">
+                    {data.views}{" "}
+                    <img
+                      src={view}
+                      onClick={() => updateBlogViews(docId)}
+                      alt="View"
+                    />
+                  </span>
+                  <span className="likeDiv">
+                    {data.likes}{" "}
+                    <img
+                      onClick={() => updateBlogLike(docId)}
+                      src={like}
+                      alt="Like"
+                    />
+                  </span>
+                </div>
+              );
+            })}
         </div>
         <div className="addIcon" onClick={() => setBlogForm(true)}>
           <span>+</span>

@@ -2,7 +2,11 @@ import React from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ page, setLoader }) => {
+const Navbar = ({ page, setPage, setLoader, setHomeTab }) => {
+  const handleLinkClick = (tabName) => {
+    setHomeTab(tabName);
+    setPage(tabName);
+  };
   return (
     <div className="navbar">
       <div className="logo">
@@ -12,29 +16,47 @@ const Navbar = ({ page, setLoader }) => {
       <div className="menu">
         <ul>
           <li className={page === "home" ? "active" : ""}>
-            <a href="#">Home</a>
+            <a
+              href="#"
+              onClick={() => handleLinkClick("home")}
+            >
+              Home
+            </a>
           </li>
-          <li>
-            <a href="#">Ideas</a>
+          <li className={page === "ideas" ? "active" : ""}>
+            <a
+              href="#"
+              onClick={() => handleLinkClick("ideas")}
+            >
+              Ideas
+            </a>
           </li>
           <li>
             <a href="#">Community</a>
           </li>
-          <li>
-            <a href="#">Blogs</a>
+          <li className={page === "blogs" ? "active" : ""}>
+            <a
+              href="#"
+              onClick={() => handleLinkClick("blogs")}
+            >
+              Blogs
+            </a>
           </li>
-          <li>
-            <a href="#about">About</a>
+          <li className={page === "about" ? "active" : ""}>
+            <a href="#">About</a>
           </li>
-          <li>
-            <a href="#faq">FAQ</a>
+          <li className={page === "faq" ? "active" : ""}>
+            <a href="#">FAQ</a>
           </li>
-          
         </ul>
       </div>
       <div className="signin">
-        <Link onClick={()=>setLoader(true)} to="/login">Sign In</Link>
-        <Link onClick={()=>setLoader(true)} to="/signup">Register</Link>
+        <Link onClick={() => setLoader(true)} to="/login">
+          Sign In
+        </Link>
+        <Link onClick={() => setLoader(true)} to="/signup">
+          Register
+        </Link>
       </div>
     </div>
   );

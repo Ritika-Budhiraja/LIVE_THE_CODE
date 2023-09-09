@@ -1,11 +1,9 @@
-import { collection, collection, doc, doc, getDocs, getFirestore, increment, query, setDoc, where } from 'firebase/firestore'
-import app from '../config/firebase'
-
-const db = getFirestore(app)
+import { collection, doc, getDocs, increment, query, setDoc, where } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 const getAllideas = async (callback) => {
-    const collection = collection(db, "ideas");
-    await getDocs(collection)
+    const collectionDb = collection(db, "ideas");
+    await getDocs(collectionDb)
         .then((docs) => {
             callback(null, docs);
         })
@@ -19,16 +17,33 @@ const getAllideas = async (callback) => {
 /// give docs (Return value)
 // can access each doc -> docs.forEach((doc) => {  rest of the code })
 
+// const getideasByUid = async (uid, callback) => {
+//     const collection = collection(db, "ideas");
+//     const query = query(collection, where("uid" == uid));
+//     await getDocs(query).then((docs) => {
+//         callback(null, docs)   
+//     }).catch((error) => {
+//         console.error(error);
+//         callback(error, null);
+//     });
+// }
 const getideasByUid = async (uid, callback) => {
-    const collection = collection(db, "ideas");
-    const query = query(collection, where("uid" == uid));
-    await getDocs(query).then((docs) => {
-        callback(null, docs)   
-    }).catch((error) => {
+    const collectionDb = collection(db, "ideas");
+    const queryDb = query(collectionDb, where("uid", "==", uid)); // Use === for comparison
+    try {
+        const querySnapshot = await getDocs(queryDb);
+        const docs = [];
+
+        querySnapshot.forEach((doc) => {
+            docs.push(doc.data());
+        });
+
+        callback(null, docs);
+    } catch (error) {
         console.error(error);
         callback(error, null);
-    });
-}
+    }
+};
 
 /*
    data = {
@@ -44,7 +59,7 @@ const getideasByUid = async (uid, callback) => {
 
    }
 */
-const addBlog = async (data, callback) => {
+const addidea = async (data, callback) => {
     const docRef = doc(collection(db, "ideas"));
     try {
         await setDoc(docRef, data);
@@ -55,18 +70,18 @@ const addBlog = async (data, callback) => {
     }
 }
 
-const updateBlogLike = async(ideaId, callback) => {
+const updateBlogLike = async (ideaId, callback) => {
     const docRef = doc(db, "ideas", ideaId);
     await setDoc(docRef, {
-        likes : increment(1)
+        likes: increment(1)
     });
 }
 
-const uppdateBlogViews = async(blogId, callback) => {
+const updateBlogViews = async (blogId, callback) => {
     const docRef = doc(db, "ideas", blogId);
     await setDoc(docRef, {
-        views : increment(1)
+        views: increment(1)
     });
 }
 
-export default {getAllideas, getideasByUid, addBlog, updateBlogLike, uppdateBlogViews};
+export { getAllideas, getideasByUid, addidea, updateBlogLike, updateBlogViews };

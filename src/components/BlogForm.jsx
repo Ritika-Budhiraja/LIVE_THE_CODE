@@ -1,11 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../assets/images/logo.png";
+import { addBlog } from "../services/blogs";
+import { AuthContext } from "../context/AuthContext";
 
 const BlogForm = ({ view }) => {
   const [image, setImage] = useState(false);
+  const [done, setDone] = useState(false);
+  const {currentUser} = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const topic = e.target[0].value;
+    const fields = e.target[1].value;
+    const description = e.target[2].value;
+    var file = "";
+    if (image) {
+      file = e.target[3].files[0];
+    }
+    const data = {
+      title: topic,
+      fields,
+      body:description,
+      image: file,
+      likes: 0,
+      views: 0,
+      uid: currentUser.uid,
+    };
+    addBlog(data, (error, result) => {
+      if (error) {
+        console.error(error);
+        // Handle the error appropriately (e.g., display an error message)
+      } else {
+        console.log(result);
+        setDone(true);
+        // Handle the success (e.g., show a success message or redirect)
+      }
+    });
   };
   function handleFileSelect(event) {
     const fileInput = event.target;
@@ -69,7 +99,7 @@ const BlogForm = ({ view }) => {
               accept="image/"
               style={{ display: "none" }}
               onChange={handleFileSelect}
-              required
+              
             />
             {image ? (
               <label htmlFor="input-field-image" className="input-label-image">
@@ -99,7 +129,11 @@ const BlogForm = ({ view }) => {
           </div>
           <button>Submit</button>
         </form>
-        {/* {err && <span className="errorMsg">Incorrect Email or Password!</span>} */}
+        {done && (
+          <span style={{ color: "green" }} className="taskMsg">
+            Blog Added!
+          </span>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+.ideasHome {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    margin: auto;
+
+    max-height: 100%;
+    height: auto;
+}
+.ideasHome h2 {
+    text-align: center;
+}
+.ideasHome .ideasDiv {
+    width: 97%;
+}
+.ideasHome .idea {
+    background-color: #3698d5;
+    border-color: #3698d5;
+    color: rgb(229,229,229);
+}
+.ideasHome .idea:hover {
+    background-color: rgb(229,229,229);
+    border-color: rgb(19,19,19);
+    color: rgb(19,19,19);
+}
