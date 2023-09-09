@@ -99,6 +99,7 @@
 }
 .aboutDiv {
   margin: 3% 5%;
+  margin-bottom: 7%;
   padding: 20px;
 }
 .about {
@@ -109,7 +110,16 @@
   gap: 5%;
   width: 90%;
   margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
+
+.aboutDiv h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
 .about-element {
   border: 1px solid rgb(19, 19, 19);
   border-radius: 20px;
@@ -117,6 +127,8 @@
   box-shadow: 3px 2px 7px #000000;
   transition: 0.4s;
   cursor: pointer;
+  height: 100%;
+  /* width: 30%; */
 }
 .about-element:hover {
   scale: 1.05;
