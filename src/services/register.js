@@ -1,7 +1,6 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {addUserData} from './firestore';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { addUserData } from './firestore';
 import app from '../config/firebase'
-import { getAuth } from 'firebase/auth';
 
 function register(data, callback) {   // data = {name,email, password.....} & callback = (error, data)
 
@@ -20,9 +19,10 @@ function register(data, callback) {   // data = {name,email, password.....} & ca
         }
 
     }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         console.error("auth error", error);
+        callback(error, error)
     });
 }
 

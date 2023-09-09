@@ -21,6 +21,12 @@
   width: 60px;
   margin: 0;
   padding: 0;
+  cursor: pointer;
+  transition: 0.4s;
+  display: inline-block;
+}
+.login img:hover {
+  transform: translateY(-2px);
 }
 /* .login h1 {
   color: rgb(229, 229, 229);
