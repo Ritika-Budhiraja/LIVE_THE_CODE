@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Signup = ({ setLoader }) => {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/dashboard");
     setLoader(true);
   };
   setLoader(false);
@@ -11,6 +16,7 @@ const Signup = ({ setLoader }) => {
     <>
       <div className="login-div">
         <div className="registera login">
+          <img src={logo} alt="" />
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -49,12 +55,58 @@ const Signup = ({ setLoader }) => {
               </label>
               <span className="input-highlight"></span>
             </div>
+            <div className="input-container">
+              <input
+                type="text"
+                className="input-field"
+                placeholder="Conatct Number"
+                required
+              />
+              <label htmlFor="input-field" className="input-label">
+                Contact Number
+              </label>
+              <span className="input-highlight"></span>
+            </div>
+            <div className="input-container">
+              <input
+                type="text"
+                className="input-field"
+                placeholder="Qualification"
+                required
+              />
+              <label htmlFor="input-field" className="input-label">
+                Qualification
+              </label>
+              <span className="input-highlight"></span>
+            </div>
+            <div className="input-container">
+              <select
+                type="date"
+                className="input-field"
+                required
+              >
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="O">O</option>
+              </select>
+            </div>
+            <div className="input-container">
+              <input
+                type="date"
+                className="input-field"
+                placeholder="Password"
+                required
+              />
+            </div>
             <button>Submit</button>
           </form>
 
           <div className="already">
             <p>
-              Don't have an account? <Link onClick={()=>setLoader(true)} to="/login">Login</Link>
+              Don't have an account?{" "}
+              <Link onClick={() => setLoader(true)} to="/login">
+                Login
+              </Link>
             </p>
           </div>
 

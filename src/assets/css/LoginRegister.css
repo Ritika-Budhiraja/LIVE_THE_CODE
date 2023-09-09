@@ -11,9 +11,16 @@
   /* background-color: rgba(0, 0, 0, 0.493); */
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px #6594b18a;
   color: rgba(19, 19, 19);
   width: 100%;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+.login img {
+  width: 60px;
+  margin: 0;
+  padding: 0;
 }
 /* .login h1 {
   color: rgb(229, 229, 229);
@@ -24,6 +31,11 @@ form {
   gap: 30px;
   width: 100%;
   position: relative;
+}
+.login h1 {
+  margin-top: 10px;
+  color: #191919;
+  text-shadow: 1px 1px 1px #191919;
 }
 .input-container {
   position: relative;
@@ -41,10 +53,10 @@ form {
   border: none;
   background-color: transparent;
   /* color: rgb(229, 229, 229); */
-  border-bottom: 2px solid rgba(59, 59, 59, 0.479);
+  border-bottom: 2px solid #1919197a;
   &::placeholder {
     /* color: rgba(229, 229, 229, 0.685); */
-    color: rgba(19, 19, 19, 0.685);
+    color: #191919af;
   }
 }
 .input-field:focus {
@@ -68,14 +80,14 @@ form {
   left: 0;
   height: 2px;
   width: 0;
-  background-color: rgb(19, 19, 19);
+  background-color: #191919ad;
   transition: all 0.3s ease;
 }
 
 .input-field:focus + .input-label {
   top: -12px;
   font-size: 14px;
-  color: rgba(14, 13, 13, 0.685);
+  color: #191919af;
   left: 5px;
 }
 
@@ -86,7 +98,8 @@ form {
 .login button,
 .register button {
   color: rgb(229, 229, 229);
-  background-color: rgb(19, 19, 19);
+  background-color: #3698d5;
+  text-shadow: 1px 1px 1px #000000;
   padding: 10px;
   margin: auto;
   width: 100%;
