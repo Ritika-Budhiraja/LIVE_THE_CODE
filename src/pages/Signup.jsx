@@ -20,20 +20,22 @@ const Signup = ({ setLoader }) => {
         qualification: ....
        }
     */
-    register(data, (error, result) => {
-      if(error) {
-        // error handling
-        console.error("signup error - "+error);
-      }
+    // register(data, (error, result) => {
+    //   if(error) {
+    //     // error handling
+    //     console.error("signup error - "+error);
+    //   }
 
-      if(result.code == 1){
-        navigate("/dashboard");
-        console.log(result.message)
-      }
-    })
+    //   if(result.code == 1){
+    //     // register successfull
+        
+    //     console.log(result.message)
+    //   }
+    // })
     setLoader(true);
   };
   setLoader(false);
+  navigate("/dashboard");
 
   return (
     <>

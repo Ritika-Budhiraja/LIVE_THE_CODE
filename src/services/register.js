@@ -2,6 +2,7 @@ import auth from '../config/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {addUserData} from './firestore';
 
+
 function register(data, callback){   // data = {name,email, password.....} & callback = (error, data)
     createUserWithEmailAndPassword(auth, data.email, data.password).then((userCredential) => {
         const user = userCredential.user;
