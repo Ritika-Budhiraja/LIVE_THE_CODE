@@ -35,25 +35,30 @@ const Signup = ({ setLoader }) => {
        }
     */
     register(data, (error, result) => {
-      if(error) {
+      setLoader(true);
+      if (error) {
         // error handling
-        console.error("signup error - "+error);
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          setErr("Email already in use!!!");
+        } else {
+          setErr(error.message);
+        }
+        // console.error("signup error - " + error);
+        setLoader(false);
       }
 
-      if(result.code == 1){
+      if (result.code === 1) {
         navigate("/dashboard");
-        console.log(result.message)
+        console.log(result.message);
       }
-    })
-    setLoader(true);
+    });
   };
-  setLoader(false);
 
   return (
     <>
       <div className="login-div">
         <div className="registera login">
-          <img src={logo} alt="" />
+          <img src={logo} alt="" onClick={() => navigate("/")} />
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -133,6 +138,11 @@ const Signup = ({ setLoader }) => {
             </div>
             <button>Submit</button>
           </form>
+          {err && (
+            <span style={{ color: "red", marginTop: "10px", paddingTop: "10px", display: 'inline-block' }} className="taskMsg">
+              {err}
+            </span>
+          )}
 
           <div className="already">
             <p>
@@ -144,11 +154,6 @@ const Signup = ({ setLoader }) => {
           </div>
 
           {/* {done && <span style={{color: "green"}} className="taskMsg">Credentials Created!!!</span>} */}
-          {err && (
-            <span style={{ color: "red" }} className="taskMsg">
-              {err}
-            </span>
-          )}
         </div>
       </div>
       <div className="colorSVG"></div>

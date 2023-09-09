@@ -19,6 +19,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 8px;
+  scroll-behavior: smooth;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(transparent, #3698d5);
