@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardMain from "../components/DashboardMain";
 import Ideas from "../components/Ideas";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,11 @@ import avatar from "../assets/images/avatar.png";
 const Dashboard = ({ setLoader }) => {
   const [tab, setTab] = useState("home");
   const navigate = useNavigate();
-  setLoader(false);
+
+  useEffect(() => {
+    setLoader(false);
+  }, []);
+
   const handleLogOut = () => {
     navigate("/login");
   };
@@ -19,7 +23,9 @@ const Dashboard = ({ setLoader }) => {
         <div className="sidebar">
           <div className="sidebar-header">
             <div className="profile">
-              <div className="avatar"><img src={avatar} alt="" /></div>
+              <div className="avatar">
+                <img src={avatar} alt="" />
+              </div>
               <div className="name">Aman</div>
             </div>
             <div className="sidebarMenu">

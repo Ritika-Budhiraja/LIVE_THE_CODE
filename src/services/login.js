@@ -1,9 +1,9 @@
-import auth from '../config/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {getUserData} from './firestore';
+import app from '../config/firebase';
 
 function login(data, callback) {  //callback = (error, result)
-
+    const auth=getAuth(app);
     signInWithEmailAndPassword(auth, data.email, data.password).then((userCredential) => {
         const user = userCredential.user;
         const uid = user.uid;
