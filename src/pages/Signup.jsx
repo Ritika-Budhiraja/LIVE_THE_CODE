@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import register from "../services/register";
 
 const Signup = ({ setLoader }) => {
+  useEffect(() => {
+    setLoader(false);
+  }, []);
   const navigate = useNavigate();
+  const [err, setErr] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const number = e.target[3].value;
+    const qualification = e.target[4].value;
+    const gender = e.target[5].value;
+    const dob = e.target[6].value;
+
+    const data = { name, email, password, number, qualification, gender, dob };
+
     // pass the data
     /*
        data = {
@@ -20,22 +34,20 @@ const Signup = ({ setLoader }) => {
         qualification: ....
        }
     */
-    // register(data, (error, result) => {
-    //   if(error) {
-    //     // error handling
-    //     console.error("signup error - "+error);
-    //   }
+    register(data, (error, result) => {
+      if(error) {
+        // error handling
+        console.error("signup error - "+error);
+      }
 
-    //   if(result.code == 1){
-    //     // register successfull
-        
-    //     console.log(result.message)
-    //   }
-    // })
+      if(result.code == 1){
+        navigate("/dashboard");
+        console.log(result.message)
+      }
+    })
     setLoader(true);
   };
   setLoader(false);
-  navigate("/dashboard");
 
   return (
     <>
@@ -105,11 +117,7 @@ const Signup = ({ setLoader }) => {
               <span className="input-highlight"></span>
             </div>
             <div className="input-container">
-              <select
-                type="date"
-                className="input-field"
-                required
-              >
+              <select className="input-field" required>
                 <option value="M">M</option>
                 <option value="F">F</option>
                 <option value="O">O</option>
@@ -135,8 +143,12 @@ const Signup = ({ setLoader }) => {
             </p>
           </div>
 
-          {/* {done && <span style={{color: "green"}} className="taskMsg">Credentials Created!!!</span>}
-      {err && <span style={{color: "red"}} className="taskMsg">{err}</span>} */}
+          {/* {done && <span style={{color: "green"}} className="taskMsg">Credentials Created!!!</span>} */}
+          {err && (
+            <span style={{ color: "red" }} className="taskMsg">
+              {err}
+            </span>
+          )}
         </div>
       </div>
       <div className="colorSVG"></div>
