@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import login from "../services/login";
 
 const Login = ({setLoader}) => {
   const navigate = useNavigate();
@@ -11,8 +12,24 @@ const Login = ({setLoader}) => {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
+    const data = {
+      email : email,
+      password : password
+    };
+
+    login(data, (error, result) => {
+      if(error){
+        console.error(error);
+      }
+      if(result){
+        console.log(result)
+        // use result for profile 
+        navigate("/dashboard");
+        // rest of the logic
+      }
+    });
+
     setLoader(true);
-    navigate("/dashboard");
   };
 
   setLoader(false);

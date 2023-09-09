@@ -1,13 +1,36 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import register from "../services/register";
 
 const Signup = ({ setLoader }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    // pass the data
+    /*
+       data = {
+        name: ...
+        email: ....
+        number: ....
+        password: ....
+        gender: ....
+        dob: ....
+        qualification: ....
+       }
+    */
+    register(data, (error, result) => {
+      if(error) {
+        // error handling
+        console.error("signup error - "+error);
+      }
+
+      if(result.code == 1){
+        navigate("/dashboard");
+        console.log(result.message)
+      }
+    })
     setLoader(true);
   };
   setLoader(false);
