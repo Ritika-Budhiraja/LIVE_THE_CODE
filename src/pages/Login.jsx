@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import login from "../services/login";
 
-const Login = ({setLoader}) => {
+const Login = ({ setLoader }) => {
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
 
@@ -13,17 +13,19 @@ const Login = ({setLoader}) => {
     const password = e.target[1].value;
 
     const data = {
-      email : email,
-      password : password
+      email: email,
+      password: password,
     };
 
     login(data, (error, result) => {
-      if(error){
-        console.error(error);
+      if (error) {
+        // console.error(error);
+        setLoader(false);
+        setErr(error.message);
       }
-      if(result){
-        console.log(result)
-        // use result for profile 
+      if (result) {
+        console.log(result);
+        // use result for profile
         navigate("/dashboard");
         // rest of the logic
       }
@@ -32,13 +34,15 @@ const Login = ({setLoader}) => {
     setLoader(true);
   };
 
-  setLoader(false);
+  useEffect(() => {
+    setLoader(false);
+  }, []);
 
   return (
     <>
       <div className="login-div">
         <div className="login">
-        <img src={logo} alt="" />
+          <img src={logo} alt="" onClick={() => navigate("/")} />
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -72,7 +76,10 @@ const Login = ({setLoader}) => {
           )}
           <div className="already">
             <p>
-              Don't have an account? <Link onClick={()=>setLoader(true)} to="/signup">Register</Link>
+              Don't have an account?{" "}
+              <Link onClick={() => setLoader(true)} to="/signup">
+                Register
+              </Link>
             </p>
           </div>
         </div>

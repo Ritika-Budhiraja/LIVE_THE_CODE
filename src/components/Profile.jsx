@@ -1,60 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import avatar from "../assets/images/avatar.png";
 import like from "../assets/images/like.svg";
 import view from "../assets/images/view.svg";
-import { AuthContext } from "../context/AuthContext";
-import { db } from "../config/firebase";
-import { doc, getDoc } from "firebase/firestore";
 
-const Profile = () => {
-  const { currentUser } = useContext(AuthContext);
-  const [userData, setUserData] = useState([]); // Use useState to store user data
-
-  useEffect(() => {
-    async function getUserData(uid) {
-      try {
-        const userRef = doc(db, "users", uid); // 'users' is the Firestore collection where user data is stored
-        const userDoc = await getDoc(userRef);
-
-        if (userDoc.exists()) {
-          // Access user data here
-          const userData = userDoc.data();
-
-          userData.age= calculateAge(userData.dob);
-
-          setUserData(userData); // Set the user data in state
-        } else {
-          console.log("User not found");
-        }
-      } catch (error) {
-        console.error("Error getting user data:", error);
-        // Handle the error appropriately
-      }
-    }
-
-    if (currentUser) {
-      getUserData(currentUser.uid); // Call the function with the UID when currentUser is available
-    }
-  }, [currentUser]); // Include currentUser as a dependency
-
-  function calculateAge(dateOfBirth) {
-    const dob = new Date(dateOfBirth);
-    const currentDate = new Date();
-
-    const yearsDiff = currentDate.getFullYear() - dob.getFullYear();
-
-    // Check if the birthday hasn't occurred yet this year
-    if (
-      currentDate.getMonth() < dob.getMonth() ||
-      (currentDate.getMonth() === dob.getMonth() &&
-        currentDate.getDate() < dob.getDate())
-    ) {
-      return yearsDiff - 1; // Subtract 1 year if the birthday hasn't occurred yet
-    }
-
-    return yearsDiff;
-  }
-
+const Profile = ({ userData }) => {
   return (
     <div className="profileDiv">
       <h1>Your Profile</h1>
